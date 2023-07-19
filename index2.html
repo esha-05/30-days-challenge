@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>day 2</title>
+</head>
+<body>
+    <script>
+        function countChocolates(totalMoney, chocolateCost) {
+        const presentbalance = /-?\d+/; 
+        const moneyMatch = totalMoney.match(presentbalance);
+        const costMatchs = chocolateCost.match(presentbalance);
+        if (!moneyMatch || !costMatchs) {
+        return "Invalid Input";
+        }
+  
+        const money = parseInt(moneyMatch[0]);
+        const cost = parseInt(costMatchs[0]);
+  
+    
+        if (money < 0) {
+        return "Invalid Input";
+        }
+        let chocolates = Math.floor(money / cost);
+        let wrappers = chocolates;
+  
+        while (wrappers >= 3) {
+        const additionalChocolates = Math.floor(wrappers / 3);
+        chocolates += additionalChocolates;
+        wrappers = additionalChocolates + (wrappers % 3);
+        }
+        return chocolates;
+        }
+        console.log(countChocolates("4$", "2$")); 
+        console.log(countChocolates("55 $", "6$")); 
+        console.log(countChocolates(" 68$", "2$")); 
+        console.log(countChocolates("-70$  ", "2$")); 
+    </script>
+</body>
+</html>

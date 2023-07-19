@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>day 5</title>
+</head>
+<body>
+    <script>
+        function spotlightMap(grid) {
+            const rows = grid.length;
+            const cols = grid[0].length;
+            const resultGrid = [];
+          
+            // Helper function to calculate the spotlight sum for a given cell
+            function getSpotlightSum(row, col) {
+              let sum = 0;
+              for (let i = row - 1; i <= row + 1; i++) {
+                for (let j = col - 1; j <= col + 1; j++) {
+                  if (i >= 0 && i < rows && j >= 0 && j < cols) {
+                    sum += grid[i][j];
+                  }
+                }
+              }
+              return sum;
+            }
+          
+            // Calculate the spotlight sum for each cell in the grid
+            for (let i = 0; i < rows; i++) {
+              const newRow = [];
+              for (let j = 0; j < cols; j++) {
+                newRow.push(getSpotlightSum(i, j));
+              }
+              resultGrid.push(newRow);
+            }
+          
+            return resultGrid;
+          }
+          
+
+    </script>
+  
+    
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>day 8</title>
+</head>
+<body>
+    <script>
+      function findPath(tickets) {
+            const graph = {};
+          
+            for (const [from, to] of tickets) {
+              if (!graph.hasOwnProperty(from)) {
+                graph[from] = [];
+              }
+              graph[from].push(to);
+            }
+            for (const from in graph) {
+              graph[from].sort();
+            }
+            function dfs(currAirport) {
+              const destinations = graph[currAirport];
+          
+              while (destinations && destinations.length > 0) {
+                const nextAirport = destinations.shift();
+                dfs(nextAirport);
+              }
+          
+              itinerary.push(currAirport);
+            }
+          
+            const itinerary = [];
+            dfs("A"); // Start from airport "A" as the man initially departs from there
+            return itinerary.reverse();
+          }
+    </script>
+  
+    
+</body>
+</html>

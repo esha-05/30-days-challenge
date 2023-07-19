@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>day 7</title>
+</head>
+<body>
+    <script>
+        function join(words) {
+            // Helper function to find the common letters between two words
+            function findCommonLetters(word1, word2) {
+              for (let i = Math.min(word1.length, word2.length); i > 0; i--) {
+                if (word1.endsWith(word2.substring(0, i))) {
+                  return [word1, word2.substring(i)];
+                }
+              }
+              return [word1, word2];
+            }
+          
+            // Initialize the result string and minimum overlap count
+            let resultString = words[0];
+            let minOverlap = 0;
+          
+            // Iterate through the words to join them using common letters
+            for (let i = 1; i < words.length; i++) {
+              const [prevWord, overlap] = findCommonLetters(resultString, words[i]);
+              resultString = prevWord + overlap;
+              minOverlap = Math.max(minOverlap, overlap.length);
+            }
+          
+            return [resultString, minOverlap];
+          }
+
+    </script>
+  
+    
+</body>
+</html>

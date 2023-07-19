@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>day 6</title>
+</head>
+<body>
+    <script>
+        function groupSeats(seatingArrangement, n) {
+            const rows = seatingArrangement.length;
+            const cols = seatingArrangement[0].length;
+            let count = 0;
+          
+            // Helper function to check if there are 'n' contiguous vacant seats in a row
+            function hasContiguousSeats(row) {
+              let consecutiveVacantSeats = 0;
+              for (let col = 0; col < cols; col++) {
+                if (seatingArrangement[row][col] === 0) {
+                  consecutiveVacantSeats++;
+                  if (consecutiveVacantSeats === n) {
+                    return true;
+                  }
+                } else {
+                  consecutiveVacantSeats = 0;
+                }
+              }
+              return false;
+            }
+          
+            // Iterate through each row and count valid seating options
+            for (let row = 0; row < rows; row++) {
+              if (hasContiguousSeats(row)) {
+                count++;
+              }
+            }
+          
+            return count;
+          }
+          
+          
+
+    </script>
+  
+    
+</body>
+</html>

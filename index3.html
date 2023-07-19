@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>day 3</title>
+</head>
+<body>
+    <script>
+        function getObject(inputObject) {
+            const uniqueMarks = {}; // Dictionary to store unique marks and their associated entries
+            const resultObject = {}; // The final object containing entries with unique marks
+          
+            for (const key in inputObject) {
+              const entry = inputObject[key];
+              const mark = entry.marks;
+          
+              // Check if the mark is already encountered
+              if (!uniqueMarks.hasOwnProperty(mark)) {
+                // If mark is new, add it to the uniqueMarks dictionary with the entry
+                uniqueMarks[mark] = entry;
+              } else {
+                // If the mark is already present, check if the current entry's age is older
+                const existingEntry = uniqueMarks[mark];
+                if (entry.age < existingEntry.age) {
+                  // If the current entry is older, replace the existing entry with the current one
+                  uniqueMarks[mark] = entry;
+                }
+              }
+            }
+          
+            // Convert the uniqueMarks dictionary back to an object (resultObject)
+            let index = 0;
+            for (const mark in uniqueMarks) {
+              resultObject[index] = uniqueMarks[mark];
+              index++;
+            }
+          
+            return resultObject;
+          }
+          
+    </script>
+    
+</body>
+</html>
